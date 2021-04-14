@@ -1,0 +1,7 @@
+# By default, ignore everything
+**
+
+# Allow files and directories
+!conf.d
+!nginx.conf
+!mime.types
