@@ -24,7 +24,7 @@ jobs:
           --build-arg "BUILD_DATE=${BUILD_DATE}" \
           --build-arg "VCS_REF=${VCS_REF}" \
           --tag "${IMAGE_NAME}:${VCS_REF}" \
-          --file "${{ matrix.branch}}/Dockerfile"
+          --file "${{ matrix.branch}}/Dockerfile" \
           .
         IMAGE_TAG=$(docker image inspect --format='{{ index .Config.Labels "org.opencontainers.image.version"}}' "${IMAGE_NAME}:${VCS_REF}")
         docker push "${IMAGE_NAME}:${IMAGE_TAG}"
