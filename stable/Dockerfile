@@ -112,15 +112,16 @@ COPY ./conf.d /opt/etc/nginx/conf.d
 COPY ./mime.types /opt/etc/nginx/mime.types
 
 FROM busybox:1.32.1-glibc
+ARG NGINX_VERSION=1.18.0
 ARG BUILD_DATE
 ARG VCS_REF
 LABEL org.opencontainers.image.created="${BUILD_DATE}"
-LABEL org.opencontainers.image.url="https://github.com/bc-interactive/docker-memcached"
-LABEL org.opencontainers.image.source="https://github.com/bc-interactive/docker-memcached"
-LABEL org.opencontainers.image.version="${MEMCACHED_VERSION}"
+LABEL org.opencontainers.image.url="https://github.com/bc-interactive/docker-nginx"
+LABEL org.opencontainers.image.source="https://github.com/bc-interactive/docker-nginx"
+LABEL org.opencontainers.image.version="${NGINX_VERSION}"
 LABEL org.opencontainers.image.revision="${VCS_REF}"
-LABEL org.opencontainers.image.vendor="bc-interactive"
-LABEL org.opencontainers.image.title="memcached"
+LABEL org.opencontainers.image.vendor="bcinteractive"
+LABEL org.opencontainers.image.title="nginx"
 LABEL org.opencontainers.image.authors="BC INTERACTIVE <contact@bc-interactive.fr>"
 COPY --from=builder /opt /
 STOPSIGNAL SIGQUIT
