@@ -27,4 +27,5 @@ jobs:
           --file "${{ matrix.branch}}/Dockerfile" \
           .
         IMAGE_TAG=$(docker image inspect --format='{{ index .Config.Labels "org.opencontainers.image.version"}}' "${IMAGE_NAME}:${VCS_REF}")
+        docker tag "${IMAGE_NAME}:${VCS_REF}" "${IMAGE_NAME}:${IMAGE_TAG}"
         docker push "${IMAGE_NAME}:${IMAGE_TAG}"
