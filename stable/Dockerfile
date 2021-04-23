@@ -13,7 +13,7 @@ RUN apt-get update \
    xz-utils
 
 FROM downloader AS nginx
-ARG NGINX_VERSION=1.18.0
+ARG NGINX_VERSION=1.20.0
 RUN wget -nv --compression=gzip -O "nginx-${NGINX_VERSION}.tar.gz" "https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz" \
   && wget -nv --compression=gzip -O "nginx-${NGINX_VERSION}.tar.gz.asc" "https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz.asc" \
   && wget -nv --compression=gzip -O "mdounin.key" "http://nginx.org/keys/mdounin.key" \
@@ -34,7 +34,7 @@ RUN wget -nv --compression=gzip -O "upx-3.96-amd64_linux.tar.xz" "https://github
   && chmod +x /upx
 
 FROM base AS builder
-ARG NGINX_VERSION=1.18.0
+ARG NGINX_VERSION=1.20.0
 # hadolint ignore=DL3008
 RUN apt-get update \
   && apt-get install --yes --no-install-recommends \
@@ -112,7 +112,7 @@ COPY ./conf.d /opt/etc/nginx/conf.d
 COPY ./mime.types /opt/etc/nginx/mime.types
 
 FROM busybox:1.32.1-glibc
-ARG NGINX_VERSION=1.18.0
+ARG NGINX_VERSION=1.20.0
 ARG BUILD_DATE
 ARG VCS_REF
 LABEL org.opencontainers.image.created="${BUILD_DATE}"
